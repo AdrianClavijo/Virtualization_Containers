@@ -1,14 +1,13 @@
 #!/bin/sh
 #### Example
-#### adrian@linux~$ ./CreateVMwithVBoxManage.sh UbuntuJammy Ubuntu 2024 1024 1 nat /home/adrian/Desktop/ubuntu-20.04.1-desktop-amd64.iso
+#### adrian@linux~$ ./CreateVMwithVBoxManage.sh UbuntuJammy Ubuntu 2024 1024 1 /home/adrian/Desktop/ubuntu-20.04.1-desktop-amd64.iso
 
 VM=$1 # Maquina Virtual Name
 OS=$2 # Operative System Typr
 HDSIZE=$3 # Size of Hard Disk
 RAMSIZE=$4 # Size of Ram
 CPUS=$5 # Quantity of CPU
-NET=$6 #Name of Host Adaptor
-PATH=$7 # PATH of Iso file
+PATH=$6 # PATH of Iso file
 
 echo "$1,$2,$3,$4,$5,$6,$7"
 # Lee confirmacion del usuario
@@ -53,16 +52,16 @@ then
 	# order of boot none|floppy|dvd|disk|net
 	VBoxManage modifyvm $VM --boot1 disk --boot2 none --boot3 none --boot4none
 
-	# NET Type and enable
-	if ["$NET" = "nat" ]|[ "$NET" ="NAT"]
-	then
-		VBoxManage modifyvm $VM --nic1 nat
-	else 
-		echo "Define the host interface,ex:etho0: "
-		read NNET
-		VBoxManage modifyvm $VM --nic1 bridged
-		VBoxManage modifyvm $VM --bridgeadapter1 $NNET
-	fi
+	# # NET Type and enable
+	# if ["$NET" = "nat" ]|[ "$NET" ="NAT"]
+	# then
+	VBoxManage modifyvm $VM --nic1 nat --nat-network "10.20.1.20"
+	# else 
+	# 	echo "Define the host interface,ex:etho0: "
+	# 	read NNET
+	# 	VBoxManage modifyvm $VM --nic1 bridged
+	# 	VBoxManage modifyvm $VM --bridgeadapter1 $NNET
+	# fi
 	
 	# Vram size
 	VBoxManage modifyvm $VM --vram 128
