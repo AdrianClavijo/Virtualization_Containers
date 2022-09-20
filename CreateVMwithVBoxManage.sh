@@ -17,42 +17,42 @@ echo "Quantity of CPU: $5"
 echo "Virtual Machine Path: $6"
 
 # VM name
-vboxmanage createvm --name $VM --register
+VBoxManage createvm --name $VM --register
 
 # HD Space
-vboxmanage createhd --filename $VM.vdi --size $HDSIZE --format VDI
+VBoxManage createhd --filename $VM.vdi --size $HDSIZE --format VDI
 
 # Create controller for storage
-vboxmanage storagectl $VM --name "Storage Controller" --add ide
+VBoxManage storagectl $VM --name "Storage Controller" --add ide
 
 # Link Storage Controller
-vboxmanage storageattach $VM --storagectl "Storage Controller" --port 0 --device 0 --type hdd --medium $VM.vdi
+VBoxManage storageattach $VM --storagectl "Storage Controller" --port 0 --device 0 --type hdd --medium $VM.vdi
 
 # OS type
-vboxmanage modifyvm $VM --ostype $OS
+VBoxManage modifyvm $VM --ostype $OS
 
 # Ram size
-vboxmanage modifyvm $VM --memory $RAMSIZE
+VBoxManage modifyvm $VM --memory $RAMSIZE
 
 # I/O APIC
-vboxmanage modifyvm $VM --ioapic on
+VBoxManage modifyvm $VM --ioapic on
 
 # CPUs on VM
-vboxmanage modifyvm $VM --cpus $CPUS
+VBoxManage modifyvm $VM --cpus $CPUS
 
 # how much the CPU can be used on VM
-vboxmanage modifyvm $VM --cpuexecutioncap 100
+VBoxManage modifyvm $VM --cpuexecutioncap 100
 
 # Enables and disables the use of hardware virtualization extensions, such as Intel VT-x or AMD-V, if possible
-vboxmanage modifyvm $VM --hwvirtex on
+VBoxManage modifyvm $VM --hwvirtex on
 
 # order of boot none|floppy|dvd|disk|net
-vboxmanage modifyvm $VM --boot1 disk --boot2 none --boot3 none --boot4none
+VBoxManage modifyvm $VM --boot1 disk --boot2 none --boot3 none --boot4none
 
 # # NET Type and enable
 # if ["$NET" = "nat" ]|[ "$NET" ="NAT"]
 # then
-vboxmanage modifyvm $VM --nic1 nat --nat-network "10.20.1.20"
+VBoxManage modifyvm $VM --nic1 nat --nat-network "10.20.1.20"
 # else 
 # 	echo "Define the host interface,ex:etho0: "
 # 	read NNET
@@ -61,11 +61,11 @@ vboxmanage modifyvm $VM --nic1 nat --nat-network "10.20.1.20"
 # fi
 
 # Vram size
-vboxmanage modifyvm $VM --vram 128
+VBoxManage modifyvm $VM --vram 128
 
 # Start VM
-vboxmanage startvm $VM
+VBoxManage startvm $VM
 
 echo "VM $1 Created and started with VBoxManage!!"
-vboxmanage list vms
+VBoxManage list vms
 echo "VBoxManage command runned: VBoxManage list vms"
