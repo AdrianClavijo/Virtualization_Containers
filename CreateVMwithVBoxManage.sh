@@ -1,15 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 #### Example
 #### adrian@linux~$ ./CreateVMwithVBoxManage.sh UbuntuJammy Ubuntu 2024 1024 1 /home/adrian/Desktop/ubuntu-20.04.1-desktop-amd64.iso
 
-VM=$1 # Maquina Virtual Name
-OS=$2 # Operative System Typr
+VM=$1 # Virtual Machine Name
+OS=$2 # Operative System Type
 HDSIZE=$3 # Size of Hard Disk
 RAMSIZE=$4 # Size of Ram
 CPUS=$5 # Quantity of CPU
 PATH=$6 # PATH of Iso file
 
-echo "$1,$2,$3,$4,$5,$6,$7"
+echo "Virtual Machine Name: $1"
+echo "Operative System Type: $2"
+echo "Size of Hard Disk: $3 MB"
+echo "Size of Ram: $4 MB"
+echo "Quantity of CPU: $5"
+echo "Virtual Machine Name: $6"
 # Lee confirmacion del usuario
 echo "Continue with installation? y/N : "
 read continua
