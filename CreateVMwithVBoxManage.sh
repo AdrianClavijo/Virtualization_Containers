@@ -8,7 +8,7 @@ HDSIZE=$3 # Size of Hard Disk
 RAMSIZE=$4 # Size of Ram
 CPUS=$5 # Quantity of CPU
 NET=$6 #Name of Host Adaptor
-PATH=$8 # PATH of Iso file
+PATH=$7 # PATH of Iso file
 
 # Lee confirmacion del usuario
 echo "Continue with installation? y/N : "
@@ -62,6 +62,7 @@ then
 		VBoxManage modifyvm $VM --nic1 bridged
 		VBoxManage modifyvm $VM --bridgeadapter1 $NNET
 	fi
+	
 	# Vram size
 	VBoxManage modifyvm $VM --vram 128
 
