@@ -10,6 +10,7 @@ CPUS=$5 # Quantity of CPU
 NET=$6 #Name of Host Adaptor
 PATH=$7 # PATH of Iso file
 
+echo "$1,$2,$3,$4,$5,$6,$7"
 # Lee confirmacion del usuario
 echo "Continue with installation? y/N : "
 read continua
