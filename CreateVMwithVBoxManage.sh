@@ -20,42 +20,42 @@ then
 	echo "Creating VM $1"
 
 	# VM name
-	VBoxManage createvm --name $VM --register
+	vboxmanage createvm --name $VM --register
 
 	# HD Space
-	VBoxManage createhd --filename $VM.vdi --size $HDSIZE --format VDI
+	vboxmanage createhd --filename $VM.vdi --size $HDSIZE --format VDI
 
 	# Create controller for storage
-	VBoxManage storagectl $VM --name "Storage Controller" --add ide
+	vboxmanage storagectl $VM --name "Storage Controller" --add ide
 
 	# Link Storage Controller
-	VBoxManage storageattach $VM --storagectl "Storage Controller" --port 0 --device 0 --type hdd --medium $VM.vdi
+	vboxmanage storageattach $VM --storagectl "Storage Controller" --port 0 --device 0 --type hdd --medium $VM.vdi
 
 	# OS type
-	VBoxManage modifyvm $VM --ostype $OS
+	vboxmanage modifyvm $VM --ostype $OS
 
 	# Ram size
-	VBoxManage modifyvm $VM --memory $RAMSIZE
+	vboxmanage modifyvm $VM --memory $RAMSIZE
 
 	# I/O APIC
-	VBoxManage modifyvm $VM --ioapic on
+	vboxmanage modifyvm $VM --ioapic on
 
 	# CPUs on VM
-	VBoxManage modifyvm $VM --cpus $CPUS
+	vboxmanage modifyvm $VM --cpus $CPUS
 
 	# how much the CPU can be used on VM
-	VBoxManage modifyvm $VM --cpuexecutioncap 100
+	vboxmanage modifyvm $VM --cpuexecutioncap 100
 
 	# Enables and disables the use of hardware virtualization extensions, such as Intel VT-x or AMD-V, if possible
-	VBoxManage modifyvm $VM --hwvirtex on
+	vboxmanage modifyvm $VM --hwvirtex on
 
 	# order of boot none|floppy|dvd|disk|net
-	VBoxManage modifyvm $VM --boot1 disk --boot2 none --boot3 none --boot4none
+	vboxmanage modifyvm $VM --boot1 disk --boot2 none --boot3 none --boot4none
 
 	# # NET Type and enable
 	# if ["$NET" = "nat" ]|[ "$NET" ="NAT"]
 	# then
-	VBoxManage modifyvm $VM --nic1 nat --nat-network "10.20.1.20"
+	vboxmanage modifyvm $VM --nic1 nat --nat-network "10.20.1.20"
 	# else 
 	# 	echo "Define the host interface,ex:etho0: "
 	# 	read NNET
@@ -64,13 +64,13 @@ then
 	# fi
 	
 	# Vram size
-	VBoxManage modifyvm $VM --vram 128
+	vboxmanage modifyvm $VM --vram 128
 
 	# Start VM
-	VBoxManage startvm $VM
+	vboxmanage startvm $VM
 
 	echo "VM $1 Created and started with VBoxManage!!"
-	VBoxManage list vms
+	vboxmanage list vms
 	echo "VBoxManage command runned: VBoxManage list vms"
 else
 	echo "Create VM:$1 Cancelled"
